@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="h2" transaction-type="RESOURCE_LOCAL">
+        <!-- Persistence provider -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <!-- Entity classes -->
+	    <class>br.com.dell.model.Filmes</class>
+	    <class>br.com.dell.model.Autor</class>
+	    
+        <properties>
+        <property name="connection.driver_class" value="org.h2.Driver"/>
+        <property name="hibernate.connection.url" value="jdbc:h2:mem:myDB.db"/>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+        <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+        <property name="hibernate.show_sql" value="true" />
+        
+        <!-- minimo de conexão ou portas disponiveis -->
+        <property name="hibernate.c3p0.min_size" value="5" />
+        
+         <!-- maximo de conexão ou portas disponiveis -->
+        <property name="hibernate.c3p0.max_size" value="100" />
+        
+        <!-- o numero de segundos em que uma conexão inativa é mantida no pool -->
+        <property name="hibernate.c3p0.timeout" value="300" />
+        
+         <!-- Numero total de instruções , transações , operações no banco de dados mantido em cashe -->
+        <property name="hibernate.c3p0.max_statements" value="50" />
+        
+        <!-- Tempo ocioso em segundo antes de um conexão se validado automaticamente -->
+        <property name="hibernate.c3p0.idle_test_period" value="120" />
+        
+        <property name="hibernate.connection.provider_class" value='org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider' />
+		
+		<property name="hibernate.c3p0.acquire_increment" value='1' />
+
+    	</properties>
+    </persistence-unit>
+</persistence>
